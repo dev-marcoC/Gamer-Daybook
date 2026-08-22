@@ -107,6 +107,7 @@ export function HomePage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
         >
+          <Avatar size="large" />
           <IdentityTag size="small" animateTyping={false} />
           <h1 className={styles.name}>{profile.name}</h1>
           <p className={styles.role}>{strings.menu.roleTag}</p>
