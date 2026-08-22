@@ -1,0 +1,58 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid $color-hairline;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.toggle,
+.activeLang,
+.resetButton {
+  all: unset;
+  cursor: pointer;
+  @include hud-label;
+  padding: 8px 14px;
+  border-radius: $radius-small;
+  border: 1px solid $color-hairline;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.toggle {
+  color: $color-text-muted;
+
+  &:hover {
+    color: $color-gold;
+    border-color: $color-gold;
+  }
+}
+
+.languageGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.activeLang {
+  color: $color-void;
+  background: $color-gold;
+  border-color: $color-gold;
+}
+
+.resetButton {
+  color: $color-ember;
+
+  &:hover {
+    border-color: $color-ember;
+  }
+}

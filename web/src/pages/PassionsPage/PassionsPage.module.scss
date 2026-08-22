@@ -1,0 +1,28 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.wipBadge {
+  align-self: flex-start;
+  @include hud-label;
+  color: $color-gold;
+  border: 1px dashed $color-gold;
+  border-radius: $radius-small;
+  padding: 6px 12px;
+}
+
+.instagramLink {
+  align-self: flex-start;
+  @include hud-label;
+  color: $color-gold;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text-primary;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}

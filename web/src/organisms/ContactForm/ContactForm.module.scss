@@ -1,0 +1,77 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.honeypotField {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  @include hud-label;
+  color: $color-text-muted;
+
+  input,
+  textarea {
+    font-family: $font-body;
+    font-size: 14px;
+    color: $color-text-primary;
+    background: $color-panel;
+    border: 1px solid $color-hairline;
+    border-radius: $radius-small;
+    padding: 10px 12px;
+    resize: vertical;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+}
+
+.submitButton {
+  all: unset;
+  cursor: pointer;
+  text-align: center;
+  @include hud-label;
+  color: $color-void;
+  background: linear-gradient(90deg, $color-violet-1, $color-gold);
+  padding: 12px 18px;
+  border-radius: $radius-small;
+  transition: opacity $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.9;
+  }
+
+  &:focus-visible {
+    outline: 1px dashed $color-text-primary;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.successMessage {
+  color: $color-gold;
+  font-size: 13px;
+}
+
+.errorMessage {
+  color: $color-ember;
+  font-size: 13px;
+}

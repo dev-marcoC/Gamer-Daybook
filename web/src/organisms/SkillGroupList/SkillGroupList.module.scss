@@ -1,0 +1,25 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.groupLabel {
+  @include hud-label;
+  color: $color-gold;
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

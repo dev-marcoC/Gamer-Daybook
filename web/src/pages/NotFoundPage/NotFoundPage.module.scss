@@ -1,0 +1,7 @@
+@use "@/styles/tokens" as *;
+
+.body {
+  font-family: $font-body;
+  font-size: 15px;
+  color: $color-text-muted;
+}

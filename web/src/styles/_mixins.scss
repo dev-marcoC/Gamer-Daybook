@@ -1,0 +1,48 @@
+@use "tokens" as *;
+
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin hud-label {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@mixin ambient-glow {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 60% 45% at 50% 12%, rgba(139, 124, 250, 0.2), transparent 60%),
+    radial-gradient(ellipse 70% 55% at 88% 92%, rgba(178, 79, 224, 0.14), transparent 65%),
+    radial-gradient(ellipse 55% 40% at 8% 88%, rgba(227, 177, 82, 0.09), transparent 60%),
+    radial-gradient(ellipse 90% 70% at 50% 50%, transparent 55%, rgba(6, 4, 12, 0.55) 100%);
+}
+@mixin focus-ring {
+  outline: 1px dashed $color-gold;
+  outline-offset: 2px;
+}
+
+@mixin panel {
+  background: $color-panel;
+  border: 1px solid $color-hairline;
+  border-radius: $radius-medium;
+}

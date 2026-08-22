@@ -1,0 +1,74 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.chapter {
+  @include panel;
+  overflow: hidden;
+}
+
+.header {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 18px;
+  cursor: pointer;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  @include mobile {
+    flex-wrap: wrap;
+  }
+}
+
+.number {
+  @include hud-label;
+  color: $color-gold;
+  flex-shrink: 0;
+}
+
+.title {
+  flex: 1;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.company {
+  font-weight: 400;
+  color: $color-text-muted;
+}
+
+.period {
+  @include hud-label;
+  color: $color-text-muted;
+  flex-shrink: 0;
+}
+
+.readBadge {
+  color: $color-gold;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.body {
+  padding: 0 18px 18px;
+  overflow: hidden;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.stackChip {
+  @include hud-label;
+  color: $color-violet-1;
+  border: 1px solid $color-hairline;
+  border-radius: $radius-small;
+  padding: 4px 8px;
+}

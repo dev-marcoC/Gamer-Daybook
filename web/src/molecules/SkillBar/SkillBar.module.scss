@@ -1,0 +1,23 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: center;
+  gap: 12px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+.name {
+  font-size: 13px;
+  color: $color-text-primary;
+}
+
+.detail {
+  color: $color-text-muted;
+}

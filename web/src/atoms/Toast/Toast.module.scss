@@ -1,0 +1,22 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.wrap {
+  position: fixed;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.toast {
+  @include panel;
+  border-left: 2px solid $color-gold;
+  padding: 10px 16px;
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: $color-text-primary;
+  white-space: nowrap;
+}

@@ -1,0 +1,27 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  width: min(380px, 88vw);
+  border-top: 1px solid $color-hairline;
+}
+
+.flavorBar {
+  margin-top: 26px;
+  min-height: 18px;
+  @include hud-label;
+  color: $color-gold;
+  text-align: center;
+  opacity: 0;
+  transition: opacity $transition-fast;
+
+  &::before {
+    content: "› ";
+  }
+}
+
+.show {
+  opacity: 1;
+}

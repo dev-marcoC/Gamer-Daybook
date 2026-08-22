@@ -1,0 +1,87 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 6px;
+  border-bottom: 1px solid $color-hairline;
+  text-decoration: none;
+  color: $color-text-primary;
+  font-weight: 600;
+  font-size: 15px;
+  transition: padding-left $transition-fast, color $transition-fast;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, $color-violet-1, $color-gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform $transition-fast;
+  }
+
+  &:hover,
+  &:focus-visible {
+    padding-left: 16px;
+    color: #fff;
+  }
+
+  &:hover::before,
+  &:focus-visible::before {
+    transform: scaleY(1);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible .icon {
+    box-shadow: 0 0 0 2px $color-gold;
+  }
+}
+
+.icon {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-panel;
+  border: 1px solid $color-hairline;
+  transition: background $transition-fast, border-color $transition-fast;
+
+  svg {
+    width: 15px;
+    height: 15px;
+    stroke: $color-gold;
+  }
+}
+
+.item:hover .icon,
+.item:focus-visible .icon {
+  background: $color-panel-hover;
+  border-color: $color-gold;
+}
+
+.labelWrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sub {
+  @include hud-label;
+  font-weight: 400;
+  font-size: 10px;
+  color: $color-text-muted;
+  margin-top: 2px;
+}

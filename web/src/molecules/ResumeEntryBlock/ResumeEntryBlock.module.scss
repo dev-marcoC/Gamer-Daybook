@@ -1,0 +1,36 @@
+@use "@/styles/tokens" as *;
+
+.entry {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.muted {
+  font-weight: 400;
+  color: $color-text-muted;
+}
+
+.meta {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $color-text-muted;
+  margin-top: 2px;
+}
+
+.description {
+  font-size: 13px;
+  margin-top: 6px;
+  color: $color-text-primary;
+}
+
+.tags {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $color-violet-1;
+  margin-top: 6px;
+}

@@ -1,0 +1,17 @@
+@use "@/styles/tokens" as *;
+
+.heading {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    stroke: $color-gold;
+    flex-shrink: 0;
+  }
+}

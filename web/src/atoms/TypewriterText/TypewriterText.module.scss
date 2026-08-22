@@ -1,0 +1,8 @@
+@use "@/styles/tokens" as *;
+
+.text {
+  font-family: $font-body;
+  font-size: 15px;
+  line-height: 1.7;
+  color: $color-text-primary;
+}

@@ -1,0 +1,25 @@
+@use "@/styles/tokens" as *;
+
+.bio {
+  font-size: 15px;
+  line-height: 1.7;
+  color: $color-text-primary;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.languageBars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

@@ -1,0 +1,47 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.wrap {
+  position: relative;
+  min-height: 100vh;
+
+  &::before {
+    @include ambient-glow;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 72px 24px 64px;
+}
+
+.backLink {
+  @include hud-label;
+  color: $color-text-muted;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-gold;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.title {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: clamp(26px, 4vw, 36px);
+  margin: 18px 0 32px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}

@@ -1,0 +1,59 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.banner {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  z-index: 4;
+  @include panel;
+  border-left: 2px solid $color-gold;
+
+  @include mobile {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+    width: calc(100% - 32px);
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: $color-gold;
+  color: $color-void;
+  font-family: $font-mono;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.label {
+  @include hud-label;
+  color: $color-text-muted;
+}
+
+.link {
+  @include hud-label;
+  color: $color-gold;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text-primary;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}

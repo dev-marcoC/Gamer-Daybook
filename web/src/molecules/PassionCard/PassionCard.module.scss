@@ -1,0 +1,40 @@
+@use "@/styles/tokens" as *;
+@use "@/styles/mixins" as *;
+
+.card {
+  @include panel;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.placeholder {
+  height: 120px;
+  border: 1px dashed $color-hairline;
+  border-radius: $radius-small;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: $color-text-muted;
+  @include hud-label;
+
+  svg {
+    width: 26px;
+    height: 26px;
+    stroke: $color-text-muted;
+  }
+}
+
+.title {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.blurb {
+  font-size: 13px;
+  color: $color-text-muted;
+}
