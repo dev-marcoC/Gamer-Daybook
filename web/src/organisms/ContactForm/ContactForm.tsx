@@ -2,7 +2,13 @@ import { useState, type FormEvent } from "react";
 import { useGameState } from "@/state/GameStateProvider";
 import styles from "./ContactForm.module.scss";
 
-type SubmitStatus = "idle" | "sending" | "success" | "error";
+type SubmitStatus =
+  | "idle"
+  | "sending"
+  | "success"
+  | "validationError"
+  | "rateLimitError"
+  | "error";
 
 export function ContactForm() {
   const { strings } = useGameState();
