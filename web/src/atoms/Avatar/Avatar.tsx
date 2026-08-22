@@ -1,4 +1,4 @@
-import styles from "./Avatar.module.scss";
+import styles from "./Avatars.module.scss";
 
 interface AvatarProps {
   size?: "medium" | "large";
