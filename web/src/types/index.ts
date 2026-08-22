@@ -33,10 +33,15 @@ export interface EducationEntry {
   period: string;
 }
 
+export interface SkillEntry {
+  name: string;
+  level: number;
+}
+
 export interface SkillGroup {
-  expert: string[];
-  intermediate: string[];
-  learning: string[];
+  mastered: SkillEntry[];
+  proficient: SkillEntry[];
+  learning: SkillEntry[];
 }
 
 export interface Strength {

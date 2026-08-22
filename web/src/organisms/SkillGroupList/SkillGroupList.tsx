@@ -7,19 +7,14 @@ interface SkillGroupListProps {
   skills: SkillGroup;
 }
 
-// arbitrary but consistent bar widths per proficiency tier, not a precise measurement
-const levelWidth: Record<keyof SkillGroup, number> = {
-  expert: 95,
-  intermediate: 60,
-  learning: 25,
-};
+const maxLevel = 9;
 
 export function SkillGroupList({ skills }: SkillGroupListProps) {
   const { strings } = useGameState();
 
   const groups: Array<{ key: keyof SkillGroup; label: string }> = [
-    { key: "expert", label: strings.quickView.skillsExpert },
-    { key: "intermediate", label: strings.quickView.skillsIntermediate },
+    { key: "mastered", label: strings.quickView.skillsMastered },
+    { key: "proficient", label: strings.quickView.skillsProficient },
     { key: "learning", label: strings.quickView.skillsLearning },
   ];
 
@@ -30,7 +25,12 @@ export function SkillGroupList({ skills }: SkillGroupListProps) {
           <span className={styles.groupLabel}>{group.label}</span>
           <div className={styles.bars}>
             {skills[group.key].map((skill) => (
-              <SkillBar key={skill} name={skill} percent={levelWidth[group.key]} />
+              <SkillBar
+                key={skill.name}
+                name={skill.name}
+                detail={`Lv.${skill.level}`}
+                percent={(skill.level / maxLevel) * 100}
+              />
             ))}
           </div>
         </div>

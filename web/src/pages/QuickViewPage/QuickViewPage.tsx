@@ -20,14 +20,26 @@ import styles from "./QuickViewPage.module.scss";
 
 export function QuickViewPage() {
   const { strings } = useGameState();
-  const { profile, experience, education, skills, strengths, languages, interests, projects } = useCvData();
+  const {
+    profile,
+    experience,
+    education,
+    skills,
+    strengths,
+    languages,
+    interests,
+    projects,
+  } = useCvData();
 
   return (
     <PlainPageShell title={profile.name} subtitle={strings.quickView.subtitle}>
       <p className={styles.bio}>{profile.bio}</p>
 
       <section className={styles.section}>
-        <SectionHeading icon={BriefcaseIcon} title={strings.quickView.experience} />
+        <SectionHeading
+          icon={BriefcaseIcon}
+          title={strings.quickView.experience}
+        />
         {experience.map((entry) => (
           <ResumeEntryBlock
             key={entry.id}
@@ -41,22 +53,38 @@ export function QuickViewPage() {
       </section>
 
       <section className={styles.section}>
-        <SectionHeading icon={GraduationCapIcon} title={strings.quickView.education} />
+        <SectionHeading
+          icon={GraduationCapIcon}
+          title={strings.quickView.education}
+        />
         {education.map((entry) => (
-          <ResumeEntryBlock key={entry.id} title={entry.title} meta={`${entry.institution} · ${entry.period}`} />
+          <ResumeEntryBlock
+            key={entry.id}
+            title={entry.title}
+            meta={`${entry.institution} · ${entry.period}`}
+          />
         ))}
       </section>
 
       <section className={styles.section}>
         <SectionHeading icon={StarIcon} title={strings.quickView.skills} />
         <p className={styles.plainEntry}>
-          <strong>{strings.quickView.skillsExpert}:</strong> {skills.expert.join(", ")}
+          <strong>{strings.quickView.skillsMastered}:</strong>{" "}
+          {skills.mastered
+            .map((skill) => `${skill.name} (Lv.${skill.level})`)
+            .join(", ")}
         </p>
         <p className={styles.plainEntry}>
-          <strong>{strings.quickView.skillsIntermediate}:</strong> {skills.intermediate.join(", ")}
+          <strong>{strings.quickView.skillsProficient}:</strong>{" "}
+          {skills.proficient
+            .map((skill) => `${skill.name} (Lv.${skill.level})`)
+            .join(", ")}
         </p>
         <p className={styles.plainEntry}>
-          <strong>{strings.quickView.skillsLearning}:</strong> {skills.learning.join(", ")}
+          <strong>{strings.quickView.skillsLearning}:</strong>{" "}
+          {skills.learning
+            .map((skill) => `${skill.name} (Lv.${skill.level})`)
+            .join(", ")}
         </p>
       </section>
 
@@ -72,7 +100,9 @@ export function QuickViewPage() {
       <section className={styles.section}>
         <SectionHeading icon={GlobeIcon} title={strings.quickView.languages} />
         <p className={styles.plainEntry}>
-          {languages.map((language) => `${language.name} (${language.level})`).join(" · ")}
+          {languages
+            .map((language) => `${language.name} (${language.level})`)
+            .join(" · ")}
         </p>
       </section>
 
@@ -96,7 +126,11 @@ export function QuickViewPage() {
       <section className={styles.section}>
         <h2 className={styles.contactTitle}>{strings.quickView.contact}</h2>
         <div className={styles.contactLinks}>
-          <ContactLink icon={MailIcon} href={`mailto:${profile.email}`} label={profile.email} />
+          <ContactLink
+            icon={MailIcon}
+            href={`mailto:${profile.email}`}
+            label={profile.email}
+          />
           <ContactLink
             icon={LinkedInIcon}
             href={`https://linkedin.com/in/${profile.linkedinHandle}`}
@@ -109,7 +143,11 @@ export function QuickViewPage() {
             label={`@${profile.instagramHandle}`}
             external
           />
-          <ContactLink href={`https://github.com/${profile.githubHandle}`} label={`github.com/${profile.githubHandle}`} external />
+          <ContactLink
+            href={`https://github.com/${profile.githubHandle}`}
+            label={`github.com/${profile.githubHandle}`}
+            external
+          />
         </div>
       </section>
     </PlainPageShell>

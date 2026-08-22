@@ -11,8 +11,8 @@ import type {
 export const profile: Profile = {
   name: "Marco Carollo",
   role: "Full-Stack Developer",
-  tagline: "Computer Engineer · 5+ years experience · Remote-first",
-  bio: "Web development is the passion I turned into a career. I design and build full-stack applications for EU-funded projects, balancing technical consistency with direct, hands-on work with stakeholders. Lately that also means working AI-assisted (Claude) into the loop — fast prototyping, the occasional vibe-coding session, still shipping with intent.",
+  tagline: "Full-Stack Developer · Player since 2016 · Remote-first",
+  bio: "Web development is the passion I turned into a career: full-stack applications for EU-funded projects, close collaboration with cross-functional teams, and a healthy habit of reading other people's code until it makes sense. I care about getting the architecture right early, but I'm just as comfortable prototyping fast and iterating from feedback. Off the clock, I'm just as happy min-maxing a build or arguing over the rules of a board game.",
   email: "marco.carollo@live.it",
   linkedinHandle: "marco-carollo",
   githubHandle: "dev-marcoC",
@@ -32,7 +32,7 @@ export const experience: ExperienceEntry[] = [
     period: "2023 — Present",
     stack: ["Angular", "React", "TypeScript", "SCSS", "Docker", "REST API"],
     description:
-      "Designing and building full-stack applications for EU-funded projects, coordinating frontend/backend integration and ensuring technical consistency. Working directly with stakeholders to turn requirements into scalable features and deployment pipelines.",
+      "Designing and building full-stack applications for EU-funded projects, coordinating frontend/backend integration and ensuring technical consistency. Working directly with stakeholders to turn requirements into scalable features.",
   },
   {
     id: "aubay",
@@ -43,7 +43,7 @@ export const experience: ExperienceEntry[] = [
     period: "2021 — 2023",
     stack: ["React", "C#", "HTML", "CSS", "TypeScript", "JavaScript", "jQuery"],
     description:
-      "Sharpened communication and problem-solving skills working directly with clients on requirements analysis and functional specs. Became a go-to reference for colleagues on all kinds of technical issues.",
+      "Sharpened communication and problem-solving skills working directly with clients on requirements analysis and functional specs. Became a go-to reference for colleagues.",
   },
   {
     id: "freelance",
@@ -54,7 +54,7 @@ export const experience: ExperienceEntry[] = [
     period: "2016 — 2022",
     stack: ["Java", "MATLAB", "C", "EJS", "HTML", "CSS", "Node"],
     description:
-      "Freelance development across a wide range of software, from small tools to web applications — where it all started, and where most of the self-taught learning happened.",
+      "Freelance development across a wide range of software, from small tools to web applications — where it all started.",
   },
 ];
 
@@ -83,60 +83,61 @@ export const education: EducationEntry[] = [
 ];
 
 export const skills: SkillGroup = {
-  expert: [
-    "React",
-    "Angular",
-    "TypeScript",
-    "HTML & CSS",
-    "JavaScript",
-    "jQuery",
-    "CSS Framework",
-    "Python",
-    "Django",
-    "Docker",
-    "SQL",
-    "ApexChart",
-    "Chart.js",
+  mastered: [
+    { name: "React", level: 9 },
+    { name: "Angular", level: 9 },
+    { name: "TypeScript", level: 9 },
+    { name: "JavaScript", level: 9 },
+    { name: "HTML & CSS", level: 9 },
+    { name: "Docker", level: 8 },
+    { name: "SQL", level: 8 },
+    { name: "Python", level: 8 },
   ],
-  intermediate: ["Vue.js", "d3.js", "Google AppScript", "PHP"],
-  learning: ["WordPress", "Drupal", "Laravel"],
+  proficient: [
+    { name: "jQuery", level: 7 },
+    { name: "Vue.js", level: 6 },
+    { name: "Django", level: 6 },
+    { name: "PHP", level: 5 },
+    { name: "d3.js / Chart.js", level: 5 },
+    { name: "Google AppScript", level: 5 },
+  ],
+  learning: [
+    { name: "WordPress", level: 3 },
+    { name: "Drupal", level: 2 },
+    { name: "Laravel", level: 2 },
+  ],
 };
 
 export const strengths: Strength[] = [
   {
     id: "coordination",
     title: "Project Coordination",
-    description: "Leading diverse teams through every phase of development, from planning to delivery.",
+    description: "Leading teams from planning to delivery.",
   },
   {
     id: "vision",
     title: "Strategic Vision",
-    description: "Balancing technical execution with business goals — roadmaps, architecture, scalability.",
-  },
-  {
-    id: "teamwork",
-    title: "Team Work",
-    description: "Used to working in well-organized teams, often steering the workflow myself.",
+    description: "Balancing execution with business goals.",
   },
   {
     id: "remote",
     title: "Remote Collaboration",
-    description: "I prefer remote work: self-organized and easy to coordinate with distributed teams.",
+    description: "Self-organized across time zones.",
   },
   {
     id: "crossfunctional",
-    title: "Cross-functional Collaboration",
-    description: "Working closely with clients, translating requirements into concrete tasks.",
+    title: "Cross-functional",
+    description: "Turning requirements into concrete tasks.",
   },
   {
     id: "communication",
     title: "Communication",
-    description: "Sharpened by direct client relationships and hands-on requirements analysis.",
+    description: "Sharpened by direct client relationships.",
   },
   {
     id: "selftaught",
-    title: "Self-taught Engineer",
-    description: "Comfortable reading and understanding other people's code to ship new features.",
+    title: "Self-taught",
+    description: "Comfortable reading others' code.",
   },
 ];
 
@@ -145,19 +146,25 @@ export const languages: LanguageSkill[] = [
   { name: "English", level: "B2", proficiency: 3 },
 ];
 
-export const interests: string[] = ["Video Games", "Board Games", "Travelling", "Web Design"];
+export const interests: string[] = [
+  "Video Games",
+  "Board Games",
+  "Travelling",
+  "Web Design",
+];
 
 export const projects: ProjectEntry[] = [
   {
     id: "gamerdaybook",
     name: "GamerDaybook",
     period: "Jul 2022",
-    description: "A dynamic resume page built with React, TypeScript and Material UI.",
+    description:
+      "A dynamic resume page built with React, TypeScript and Material UI — available on my GitHub.",
   },
   {
     id: "atomic",
     name: "Atomic Architecture Experiments",
     period: "2022 — 2023",
-    description: "Experimenting with new web apps structured around Atomic Design principles.",
+    description: "Web apps structured around Atomic Design principles.",
   },
 ];
