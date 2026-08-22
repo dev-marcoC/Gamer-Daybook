@@ -14,7 +14,8 @@ interface ContactPayload {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const corsHeaders = buildCorsHeaders(env.ALLOWED_ORIGIN);
+    const requestOrigin = request.headers.get("Origin") ?? "";
+    const corsHeaders = buildCorsHeaders(env.ALLOWED_ORIGIN, requestOrigin);
 
     if (request.method === "OPTIONS") {
       return new Response(null, { headers: corsHeaders });
@@ -25,8 +26,11 @@ export default {
     }
 
     // one IP can only fire a handful of submissions per minute, see wrangler.toml for the actual limit
-    const clientIdentifier = request.headers.get("cf-connecting-ip") ?? "unknown";
-    const rateLimitResult = await env.CONTACT_RATE_LIMITER.limit({ key: clientIdentifier });
+    const clientIdentifier =
+      request.headers.get("cf-connecting-ip") ?? "unknown";
+    const rateLimitResult = await env.CONTACT_RATE_LIMITER.limit({
+      key: clientIdentifier,
+    });
     if (!rateLimitResult.success) {
       return jsonResponse({ error: "Too many requests" }, 429, corsHeaders);
     }
@@ -46,22 +50,39 @@ export default {
     const emailResponse = await sendContactEmail(env, payload);
 
     if (!emailResponse.ok) {
-      return jsonResponse({ error: "Could not deliver the message" }, 502, corsHeaders);
+      return jsonResponse(
+        { error: "Could not deliver the message" },
+        502,
+        corsHeaders,
+      );
     }
 
     return jsonResponse({ success: true }, 200, corsHeaders);
   },
 };
 
-function buildCorsHeaders(allowedOrigin: string): HeadersInit {
+function buildCorsHeaders(
+  allowedOrigins: string,
+  requestOrigin: string,
+): HeadersInit {
+  const allowList = allowedOrigins.split(",").map((origin) => origin.trim());
+  const matchedOrigin = allowList.includes(requestOrigin)
+    ? requestOrigin
+    : allowList[0];
+
   return {
-    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Origin": matchedOrigin,
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
+    Vary: "Origin",
   };
 }
 
-function jsonResponse(body: unknown, status: number, corsHeaders: HeadersInit): Response {
+function jsonResponse(
+  body: unknown,
+  status: number,
+  corsHeaders: HeadersInit,
+): Response {
   return new Response(JSON.stringify(body), {
     status,
     headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -69,14 +90,20 @@ function jsonResponse(body: unknown, status: number, corsHeaders: HeadersInit): 
 }
 
 function validatePayload(payload: ContactPayload): string | null {
-  if (!payload.name || payload.name.trim().length < 2) return "Name is too short";
-  if (!payload.email || !payload.email.includes("@")) return "Email looks invalid";
-  if (!payload.message || payload.message.trim().length < 10) return "Message is too short";
+  if (!payload.name || payload.name.trim().length < 2)
+    return "Name is too short";
+  if (!payload.email || !payload.email.includes("@"))
+    return "Email looks invalid";
+  if (!payload.message || payload.message.trim().length < 10)
+    return "Message is too short";
   return null;
 }
 
 // reply_to is the visitor's address, so replying to the notification email goes straight back to them
-async function sendContactEmail(env: Env, payload: ContactPayload): Promise<Response> {
+async function sendContactEmail(
+  env: Env,
+  payload: ContactPayload,
+): Promise<Response> {
   return fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
