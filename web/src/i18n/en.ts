@@ -11,7 +11,8 @@ const en = {
     newGameLabel: "New Game",
     newGameSub: "My story, chapter by chapter",
     newGameFlavor: "Discover my journey, one chapter at a time.",
-    newGameIntro: "Welcome to my professional timeline. Roll the die to reveal each chapter.",
+    newGameIntro:
+      "Welcome to my professional timeline. Roll the die to reveal each chapter.",
     rollToReveal: "Roll to reveal",
     chapterLabel: "Chapter",
     chapterReadLabel: "Chapter read",
@@ -77,6 +78,9 @@ const en = {
     sendingButton: "Sending…",
     successMessage: "Message sent. I will get back to you soon.",
     errorMessage: "Something went wrong. Try again or email me directly.",
+    validationError:
+      "Check the form: name, email and message (at least 10 characters) must be filled in correctly.",
+    rateLimitError: "Too many attempts. Try again in a minute.",
   },
   optionsPage: {
     soundLabel: "Sound effects",

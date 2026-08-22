@@ -23,13 +23,24 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
       });
-      if (!response.ok) throw new Error("Request failed");
+      if (!response.ok) {
+        if (response.status === 422) throw new Error("validation");
+        if (response.status === 429) throw new Error("rate-limit");
+        throw new Error("generic");
+      }
       setStatus("success");
       setName("");
       setEmail("");
       setMessage("");
-    } catch {
-      setStatus("error");
+    } catch (thrown) {
+      const reason = thrown instanceof Error ? thrown.message : "generic";
+      setStatus(
+        reason === "validation"
+          ? "validationError"
+          : reason === "rate-limit"
+            ? "rateLimitError"
+            : "error",
+      );
     }
   }
 
@@ -48,12 +59,22 @@ export function ContactForm() {
 
       <label className={styles.field}>
         {strings.contactForm.nameLabel}
-        <input type="text" required value={name} onChange={(event) => setName(event.target.value)} />
+        <input
+          type="text"
+          required
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
       </label>
 
       <label className={styles.field}>
         {strings.contactForm.emailLabel}
-        <input type="email" required value={email} onChange={(event) => setEmail(event.target.value)} />
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        />
       </label>
 
       <label className={styles.field}>
@@ -67,12 +88,36 @@ export function ContactForm() {
         />
       </label>
 
-      <button type="submit" className={styles.submitButton} disabled={status === "sending"}>
-        {status === "sending" ? strings.contactForm.sendingButton : strings.contactForm.sendButton}
+      <button
+        type="submit"
+        className={styles.submitButton}
+        disabled={status === "sending"}
+      >
+        {status === "sending"
+          ? strings.contactForm.sendingButton
+          : strings.contactForm.sendButton}
       </button>
 
-      {status === "success" && <p className={styles.successMessage}>{strings.contactForm.successMessage}</p>}
-      {status === "error" && <p className={styles.errorMessage}>{strings.contactForm.errorMessage}</p>}
+      {status === "success" && (
+        <p className={styles.successMessage}>
+          {strings.contactForm.successMessage}
+        </p>
+      )}
+      {status === "error" && (
+        <p className={styles.errorMessage}>
+          {strings.contactForm.errorMessage}
+        </p>
+      )}
+      {status === "validationError" && (
+        <p className={styles.errorMessage}>
+          {strings.contactForm.validationError}
+        </p>
+      )}
+      {status === "rateLimitError" && (
+        <p className={styles.errorMessage}>
+          {strings.contactForm.rateLimitError}
+        </p>
+      )}
     </form>
   );
 }

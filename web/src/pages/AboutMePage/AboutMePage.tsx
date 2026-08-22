@@ -4,10 +4,16 @@ import { SkillBar } from "@/molecules/SkillBar/SkillBar";
 import { EducationTimelineItem } from "@/molecules/EducationTimelineItem/EducationTimelineItem";
 import { SkillGroupList } from "@/organisms/SkillGroupList/SkillGroupList";
 import { StrengthsGrid } from "@/organisms/StrengthsGrid/StrengthsGrid";
-import { StarIcon, GraduationCapIcon, TrophyIcon, GlobeIcon } from "@/atoms/icons/SectionIcons";
+import {
+  StarIcon,
+  GraduationCapIcon,
+  TrophyIcon,
+  GlobeIcon,
+} from "@/atoms/icons/SectionIcons";
 import { useGameState } from "@/state/GameStateProvider";
 import { useCvData } from "@/state/useCvData";
 import styles from "./AboutMePage.module.scss";
+import { Avatar } from "@/atoms/Avatar/Avatar";
 
 export function AboutMePage() {
   const { strings } = useGameState();
@@ -15,7 +21,10 @@ export function AboutMePage() {
 
   return (
     <PageShell title={strings.menu.aboutMeLabel}>
-      <p className={styles.bio}>{profile.bio}</p>
+      <div className={styles.intro}>
+        <Avatar size="large" />
+        <p className={styles.bio}>{profile.bio}</p>
+      </div>
 
       <section className={styles.section}>
         <SectionHeading icon={StarIcon} title={strings.quickView.skills} />
@@ -23,7 +32,10 @@ export function AboutMePage() {
       </section>
 
       <section className={styles.section}>
-        <SectionHeading icon={GraduationCapIcon} title={strings.quickView.education} />
+        <SectionHeading
+          icon={GraduationCapIcon}
+          title={strings.quickView.education}
+        />
         <div className={styles.timeline}>
           {education.map((entry) => (
             <EducationTimelineItem

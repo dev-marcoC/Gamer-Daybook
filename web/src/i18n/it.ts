@@ -13,7 +13,8 @@ const it: TranslationShape = {
     newGameLabel: "Nuova Partita",
     newGameSub: "La mia storia, a capitoli",
     newGameFlavor: "Scopri il mio percorso, capitolo dopo capitolo.",
-    newGameIntro: "Benvenuto nella mia timeline professionale. Tira il dado per scoprire ogni capitolo.",
+    newGameIntro:
+      "Benvenuto nella mia timeline professionale. Tira il dado per scoprire ogni capitolo.",
     rollToReveal: "Tira per scoprire",
     chapterLabel: "Capitolo",
     chapterReadLabel: "Capitolo letto",
@@ -78,7 +79,11 @@ const it: TranslationShape = {
     sendButton: "Invia messaggio",
     sendingButton: "Invio in corso…",
     successMessage: "Messaggio inviato. Ti risponderò al più presto.",
-    errorMessage: "Qualcosa è andato storto. Riprova oppure scrivimi direttamente via email.",
+    errorMessage:
+      "Qualcosa è andato storto. Riprova oppure scrivimi direttamente via email.",
+    validationError:
+      "Controlla il form: nome, email e messaggio (almeno 10 caratteri) devono essere compilati correttamente.",
+    rateLimitError: "Troppi tentativi. Riprova tra un minuto.",
   },
   optionsPage: {
     soundLabel: "Effetti sonori",

@@ -6,11 +6,18 @@ import { QuickAccessBanner } from "@/molecules/QuickAccessBanner/QuickAccessBann
 import { IdentityTag } from "@/molecules/IdentityTag/IdentityTag";
 import { GameFooter } from "@/organisms/GameFooter/GameFooter";
 import { HomeMenu, type MenuEntryConfig } from "@/organisms/HomeMenu/HomeMenu";
-import { DieIcon, BookIcon, EnvelopeIcon, GearIcon, HeartIcon } from "@/atoms/icons/MenuIcons";
+import {
+  DieIcon,
+  BookIcon,
+  EnvelopeIcon,
+  GearIcon,
+  HeartIcon,
+} from "@/atoms/icons/MenuIcons";
 import { useGameState } from "@/state/GameStateProvider";
 import { useCvData } from "@/state/useCvData";
 import { useToast } from "@/state/useToast";
 import styles from "./HomePage.module.scss";
+import { Avatar } from "@/atoms/Avatar/Avatar";
 
 export function HomePage() {
   const { saveFile, strings, startGame } = useGameState();
@@ -86,6 +93,7 @@ export function HomePage() {
 
       {!entered && (
         <section className={styles.gate} onClick={enterMenu}>
+          <Avatar size="large" />
           <IdentityTag size="large" />
           <p className={styles.prompt}>{strings.gate.prompt}</p>
           <p className={styles.subtitle}>{strings.gate.subtitle}</p>
@@ -106,7 +114,9 @@ export function HomePage() {
 
           <HomeMenu entries={menuEntries} />
 
-          <GameFooter onLanguageSwitch={() => showToast(strings.toast.langSwitched)} />
+          <GameFooter
+            onLanguageSwitch={() => showToast(strings.toast.langSwitched)}
+          />
         </motion.section>
       )}
     </div>
